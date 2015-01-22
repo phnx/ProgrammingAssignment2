@@ -1,17 +1,20 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Define functions that create a matrix and its inverse matrix,
+## and enable caching functionality to optimize calculation time.
+## Using global assignment or superassignment
 
-## Write a short comment describing this function
+## Create and cache (varible assignment in extended scope) a matrix 
+## and its inverse matrix, upon calling sub-functions from cacheSolve()
 
 makeCacheMatrix <- function(x = matrix()) {
 	inv <- NULL
 	set <- function(y) {
 		x <<- y
-		m <<- NULL
+		inv <<- NULL
 	}
 	get <- function() x
 	setinverse <- function(inverse) inv <<- inverse
 	getinverse <- function() inv
+	
 	list(set = set, get = get,
 		setinverse = setinverse,
 		getinverse = getinverse)
@@ -19,7 +22,8 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## Calculate inverse matrix and keep in cache unless existing,
+## always return (either calculated or cached) inverse matrix
 
 cacheSolve <- function(x, ...) {
     ## Return a matrix that is the inverse of 'x'
